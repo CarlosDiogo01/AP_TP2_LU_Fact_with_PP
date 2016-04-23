@@ -4,7 +4,10 @@ function A=BLAS2LU(A)
 % (2007), p.72
 % This differs from LUfact1 because A may not be square, has m rows and n
 % columns, with m>=n
+%
+% VERSION WITHOUT PARTIAL PIVOTING
 
+start_time = tic;
 [m n]=size(A);
 for i=1:min(m-1,n)
     % apply row permutations to A and L
@@ -13,4 +16,6 @@ for i=1:min(m-1,n)
         A(i+1:m,i+1:n)=A(i+1:m,i+1:n)-A(i+1:m,i)*A(i,i+1:n);
     end
 end
-    
+total_time = toc(start_time)
+
+
