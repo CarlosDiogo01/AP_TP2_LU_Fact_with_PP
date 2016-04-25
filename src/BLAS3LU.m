@@ -6,6 +6,7 @@ function A=BLAS3LU(A,b)
 
 % VERSION WITHOUT PARTIAL PIVOTING %
 
+
 start_time = tic;
 n=length(A);
 for i=1:b:n-1

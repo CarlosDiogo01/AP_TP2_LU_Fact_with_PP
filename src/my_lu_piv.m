@@ -9,13 +9,20 @@ U = O;
 P = I;
 
 function change_rows(k,p)
-    x = P(k,:); P(k,:) = P(p,:); P(p,:) = x;
-    x = A(k,:); A(k,:) = A(p,:); A(p,:) = x;
-    x = v(k); v(k) = v(p); v(p) = x;
+    x = P(k,:); 
+    P(k,:) = P(p,:); 
+    P(p,:) = x;
+    x = A(k,:); 
+    A(k,:) = A(p,:); 
+    A(p,:) = x;
+    x = v(k); 
+    v(k) = v(p); 
+    v(p) = x;
 end
 
 function change_L(k,p)
-    x = L(k,1:k-1); L(k,1:k-1) = L(p,1:k-1);
+    x = L(k,1:k-1); 
+    L(k,1:k-1) = L(p,1:k-1);
     L(p,1:k-1) = x;
 end
 

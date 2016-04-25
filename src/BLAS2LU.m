@@ -17,5 +17,3 @@ for i=1:min(m-1,n)
     end
 end
 total_time = toc(start_time)
-
-
