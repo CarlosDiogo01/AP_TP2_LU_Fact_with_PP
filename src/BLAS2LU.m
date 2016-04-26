@@ -18,7 +18,7 @@ for i=1:min(m-1,n)
         A(i+1:m,i+1:n)=A(i+1:m,i+1:n)-A(i+1:m,i)*A(i,i+1:n);
     end
 end
-total_time = toc(start_time);
+total_time = toc(start_time)
 
 % Decomposition L U and P
 L = tril(A); 

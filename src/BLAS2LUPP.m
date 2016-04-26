@@ -30,7 +30,7 @@ for i=1:min(m-1,n)
 end
 
 %Measuring Time
-total_time = toc(start_time);
+total_time = toc(start_time)
 
 % Decomposition L U and P
 L = tril(A); 
@@ -40,7 +40,7 @@ end
 U = triu(A);
 
 %Computing lu for validation
-LU_RESULT = lu(A_ORIGINAL);
+%LU_RESULT = lu(A_ORIGINAL);
 
 % Compute Error
-%Relative_Error = norm(P*A_ORIGINAL - L*U)/norm(A)
+Relative_Error = norm(P*A_ORIGINAL - L*U)/norm(A)
