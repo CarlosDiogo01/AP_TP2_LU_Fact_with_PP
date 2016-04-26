@@ -1,4 +1,4 @@
-function [A L U] = BLAS2LU(A)
+function [A,L,U] = BLAS2LU(A)
 % LU factorization with partial pivoting, overwriting L and U on A
 % see ALGORITHM 2.9 in Applied Numerical Linear Algebra, J. Demmel, SIAM
 % (2007), p.72
