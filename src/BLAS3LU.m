@@ -1,4 +1,4 @@
-function [A L U] = BLAS3LU(A,b)
+function [A,L,U] = BLAS3LU(A,b)
 % Block LU factorization with partial pivoting, overwriting L and U on A
 % see ALGORITHM 2.10 in Applied Numerical Linear Algebra, J. Demmel, SIAM
 % (2007), p.74. Size of blocks is b.

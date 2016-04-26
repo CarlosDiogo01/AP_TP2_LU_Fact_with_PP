@@ -1,4 +1,4 @@
-function [A L U P] = BLAS3LUPP(A,b)
+function [A,L,U,P] = BLAS3LUPP(A,b)
 % Block LU factorization with partial pivoting, overwriting L and U on A
 % see ALGORITHM 2.10 in Applied Numerical Linear Algebra, J. Demmel, SIAM
 % (2007), p.74. Size of blocks is b.
@@ -16,13 +16,19 @@ for i=1:b:n-1
     % apply row permutations to A and L
     [~,p] = max(abs(A(i:n,i)));
     p = p+i-1;
+    
+    last=min(i+b-1,n);  
+    [A(i:n,i:last),~,~,P2]=BLAS2LUPP(A(i:n,i:last)); % step 1 (L22, L32)
+    
     % swap rows only if pivot is not i
     if p~=i
         A([i p], :) = A([p i], :);
         P([i p], :) = P([p i], :);
     end
-    last=min(i+b-1,n);  
-    A(i:n,i:last)=BLAS2LUPP(A(i:n,i:last)); % step 1 (L22, L32)
+    %BLOCK = A(i:last,:);P2;
+    A(i:last,:) = P2*A(i:last,:);
+    P(i:last,:) = P2*P(i:last,:);
+    
     if n-i+1 > b  % SIZE OF REMAINING BLOCK LARGER THAN b
         L22=tril(A(i:last,i:last),-1)+eye(b);
         A(i:last,i+b:n)=inv(L22)*A(i:last,i+b:n); % step 2 (U22)
@@ -43,8 +49,5 @@ LU_RESULT = lu(A_ORIGINAL)
 
 % Compute Error
 Relative_Error = norm(P*A_ORIGINAL - L*U)/norm(A)
-
-
-
 
     
