@@ -1,4 +1,4 @@
-function A=BLAS2LU(A)
+function [A L U] = BLAS2LU(A)
 % LU factorization with partial pivoting, overwriting L and U on A
 % see ALGORITHM 2.9 in Applied Numerical Linear Algebra, J. Demmel, SIAM
 % (2007), p.72
@@ -16,4 +16,14 @@ for i=1:min(m-1,n)
         A(i+1:m,i+1:n)=A(i+1:m,i+1:n)-A(i+1:m,i)*A(i,i+1:n);
     end
 end
-total_time = toc(start_time)
+total_time = toc(start_time);
+
+% Decomposition L U and P
+L = tril(A); 
+for j=1:n
+    L(j,j) = 1;
+end
+U = triu(A);
+
+% Compute Error
+%Error = norm(A - L*U)/norm(A)

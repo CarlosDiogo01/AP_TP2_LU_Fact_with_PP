@@ -1,11 +1,10 @@
-function A=BLAS3LU(A,b)
+function [A L U] = BLAS3LU(A,b)
 % Block LU factorization with partial pivoting, overwriting L and U on A
 % see ALGORITHM 2.10 in Applied Numerical Linear Algebra, J. Demmel, SIAM
 % (2007), p.74. Size of blocks is b.
 % Uses BLAS2LU to produce the LU dec. of rectangular submatrices of A
 
 % VERSION WITHOUT PARTIAL PIVOTING %
-
 
 start_time = tic;
 n=length(A);
@@ -20,3 +19,13 @@ for i=1:b:n-1
     end
 end
 total_time = toc(start_time)
+
+% Decomposition L U and P
+L = tril(A); 
+for j=1:n
+    L(j,j) = 1;
+end
+U = triu(A);
+
+% Compute Error
+Error = norm(A - L*U)/norm(A)
