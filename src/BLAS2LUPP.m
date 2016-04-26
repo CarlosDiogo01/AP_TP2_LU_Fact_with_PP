@@ -8,6 +8,7 @@ function [A L U P] = BLAS2LUPP(A)
 % Author Carlos Sá e Bruno Barbosa
 % VERSION WITH PARTIAL PIVOTING
 
+A_ORIGINAL = A;
 start_time = tic;
 [m n]=size(A);
 P = eye(n);
@@ -38,5 +39,8 @@ for j=1:n
 end
 U = triu(A);
 
+%Computing lu for validation
+LU_RESULT = lu(A_ORIGINAL);
+
 % Compute Error
-%Error = norm(P*A - L*U)
+%Relative_Error = norm(P*A_ORIGINAL - L*U)/norm(A)

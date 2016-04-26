@@ -6,6 +6,8 @@ function [A L U] = BLAS3LU(A,b)
 
 % VERSION WITHOUT PARTIAL PIVOTING %
 
+A_ORIGINAL = A;
+
 start_time = tic;
 n=length(A);
 for i=1:b:n-1
@@ -28,4 +30,4 @@ end
 U = triu(A);
 
 % Compute Error
-Error = norm(A - L*U)/norm(A)
+Relative_Error = norm(A_ORIGINAL - L*U)/norm(A)
