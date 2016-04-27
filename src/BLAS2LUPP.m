@@ -12,8 +12,8 @@ A_ORIGINAL = A;
 start_time = tic;
 [m n]=size(A);
 P = eye(n);
+
 for i=1:min(m-1,n)
-%     A(i:m,i) = A(i:m,i) - A(i:m,1:i-1) * A(1:i-1,i);
     % apply row permutations to A and L
     % locate pivot's position lu(A)
     [~,p] = max(abs(A(i:n,i)));
@@ -31,16 +31,14 @@ end
 
 %Measuring Time
 total_time = toc(start_time);
-
 % Decomposition L U and P
 L = tril(A); 
 for j=1:n
     L(j,j) = 1;
 end
 U = triu(A);
-
-%Computing lu for validation
-%LU_RESULT = lu(A_ORIGINAL);
+% Computing lu for validation and returning permutation vector
+% LU_RESULT = lu(A_ORIGINAL)
 
 % Compute Error
 % Relative_Error = norm(P*A_ORIGINAL - L*U)/norm(A)

@@ -28,6 +28,8 @@ for j=1:n
     L(j,j) = 1;
 end
 U = triu(A);
+%Computing lu for validation
+LU_RESULT = lu(A_ORIGINAL);
 
 % Compute Error
 Relative_Error = norm(A_ORIGINAL - L*U)/norm(A)
