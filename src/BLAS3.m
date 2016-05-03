@@ -14,14 +14,14 @@ n=length(A); P = eye(n);
 start_time = tic;
 for i=1:b:n-1
     
-    for piv_num=i:i+b-1
-    [~,p] = max(abs(A(piv_num:n,piv_num)));
+    for ln=i:i+b-1
+        [~,p] = max(abs(A(ln:n,ln)));
     
-    p = p+piv_num-1;
-    if p~=piv_num
-        A([piv_num p], :) = A([p piv_num], :);
-        P([piv_num p], :) = P([p piv_num], :);
-    end
+        p = p+ln-1;
+        if p~=ln
+            A([ln p], :) = A([p ln], :);
+            P([ln p], :) = P([p ln], :);
+        end
     end
     %A(i+1:m,i)=A(i+1:m,i)/A(i,i);
     
