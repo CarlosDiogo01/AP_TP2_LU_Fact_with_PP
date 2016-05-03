@@ -11,7 +11,8 @@ function [A,L,U,P] = BLAS2LUPP(A)
 A_ORIGINAL = A;
 start_time = tic;
 [m n]=size(A);
-P = eye(n);
+% P = eye(n); version working
+P = eye(m);
 
 for i=1:min(m-1,n)
     % apply row permutations to A and L
