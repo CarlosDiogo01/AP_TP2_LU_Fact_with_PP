@@ -40,4 +40,4 @@ U = triu(A);
 % LU_RESULT = lu(A_ORIGINAL)
 
 % Compute Error
- Relative_Error = norm(P*A_ORIGINAL - L*U)/norm(A)
+% Relative_Error = norm(P*A_ORIGINAL - L*U)/norm(A)
